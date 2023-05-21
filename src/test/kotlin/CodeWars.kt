@@ -24,4 +24,17 @@ internal class CodeWars {
         assertTrue { hero(6, 3) }
         assertTrue { hero(6, 2) }
     }
+
+    @Test
+    fun `twiceAsOld - how many years ago or until the father was or will be twice as old as his son`() {
+        assertEquals(0, twiceAsOld(32, 16))
+        assertEquals(1, twiceAsOld(31, 16))
+        assertEquals(1, twiceAsOld(33, 16))
+
+        assertEquals(22, twiceAsOld(36,7))
+        assertEquals(5, twiceAsOld(55,30))
+        assertEquals(0, twiceAsOld(42,21))
+        assertEquals(20, twiceAsOld(22,1))
+        assertEquals(29, twiceAsOld(29,0))
+    }
 }
