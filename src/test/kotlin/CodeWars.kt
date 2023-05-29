@@ -31,10 +31,60 @@ internal class CodeWars {
         assertEquals(1, twiceAsOld(31, 16))
         assertEquals(1, twiceAsOld(33, 16))
 
-        assertEquals(22, twiceAsOld(36,7))
-        assertEquals(5, twiceAsOld(55,30))
-        assertEquals(0, twiceAsOld(42,21))
-        assertEquals(20, twiceAsOld(22,1))
-        assertEquals(29, twiceAsOld(29,0))
+        assertEquals(22, twiceAsOld(36, 7))
+        assertEquals(5, twiceAsOld(55, 30))
+        assertEquals(0, twiceAsOld(42, 21))
+        assertEquals(20, twiceAsOld(22, 1))
+        assertEquals(29, twiceAsOld(29, 0))
+    }
+
+    @Test
+    fun `roman numerals encoder-decoder`() {
+        val romanToNumbers = arrayOf(
+            Pair("I", 1),
+            Pair("V", 5),
+            Pair("X", 10),
+            Pair("L", 50),
+            Pair("C", 100),
+            Pair("D", 500),
+            Pair("M", 1000),
+            Pair("II", 2),
+            Pair("III", 3),
+            Pair("XX", 20),
+            Pair("XXX", 30),
+            Pair("CC", 200),
+            Pair("CCC", 300),
+            Pair("MM", 2000),
+            Pair("MMM", 3000),
+
+            Pair("IV", 4),
+            Pair("IX", 9),
+            Pair("XL", 40),
+            Pair("XC", 90),
+            Pair("CD", 400),
+            Pair("CM", 900),
+
+
+            Pair("VI", 6),
+            Pair("VIII", 8),
+            Pair("XXI", 21),
+            Pair("XXIII", 23),
+            Pair("XI", 11),
+            Pair("XII", 12),
+            Pair("XV", 15),
+            Pair("XXV", 25),
+            Pair("XVII", 17),
+            Pair("XLVIII", 48),
+
+            Pair("LXVI", 66),
+            Pair("MDCLXVI", 1666),
+
+            Pair("XCI", 91),
+            Pair("XCIX", 99),
+        )
+        for (td in romanToNumbers) {
+            assertEquals(td.first, romanEncode(td.second))
+            assertEquals(td.second, romanDecode(td.first))
+        }
     }
 }
