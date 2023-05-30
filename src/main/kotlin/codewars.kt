@@ -48,7 +48,8 @@ fun romanEncode(num: Int): String {
         Pair("IX", 9),
         Pair("V", 5),
         Pair("IV", 4),
-        Pair("I", 1))
+        Pair("I", 1)
+    )
 
     var encoded = ""
     var toEncode = num
@@ -62,6 +63,9 @@ fun romanEncode(num: Int): String {
     return encoded
 }
 
+/*
+Decode a roman numberal to regular (arabic) numbers
+ */
 fun romanDecode(roman: String): Int {
     val ts = arrayOf(
         Pair("M", 1000),
@@ -76,17 +80,82 @@ fun romanDecode(roman: String): Int {
         Pair("IX", 9),
         Pair("V", 5),
         Pair("IV", 4),
-        Pair("I", 1)).reversed()
+        Pair("I", 1)
+    ).reversed()
     var n = 0
     var s = roman
     for (t in ts) {
         while (s.endsWith(t.first)) {
             n += t.second
-            s = s.substring(0, s.length-t.first.length)
+            s = s.substring(0, s.length - t.first.length)
         }
     }
     return n
 }
 
+/*
+https://www.codewars.com/kata/5679aa472b8f57fb8c000047/train/kotlin
+You are going to be given an array of integers. Your job is to take that array and find an index N where the sum of the integers to the left of N is equal to the sum of the integers to the right of N. If there is no index that would make this happen, return -1.
+ */
+fun findEvenIndex(arr: IntArray): Int {
+    for (i in arr.indices) {
+        val first = arr.take(i)
+        val second = arr.drop(i + 1)
+        if (first.sum() == second.sum()) {
+            return i
+        }
+    }
+    return -1
+}
+
+/*
+https://www.codewars.com/kata/56f3a1e899b386da78000732/train/kotlin
+Write a function partlist that gives all the ways to divide a list (an array) of at least two elements into two non-empty parts.
+ */
+fun partlist(arr: Array<String>): Array<Array<String>> {
+    return (1..arr.lastIndex).map {
+        arrayOf(arr.take(it).joinToString(" "), arr.drop(it).joinToString(" "))
+    }.toTypedArray()
+}
+
+/*
+https://www.codewars.com/kata/517abf86da9663f1d2000003/train/kotlin
+Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case). The next words should be always capitalized.
+ */
+fun toCamelCase(str: String): String =
+    str.replace('-', '_')
+        .split('_')
+        .mapIndexed { i, it ->
+            if (i != 0) it.capitalize() else it
+        }
+        .joinToString("")
+
+/*
+https://www.codewars.com/kata/534d2f5b5371ecf8d2000a08/train/kotlin
+Your task, is to create N×N multiplication table, of size provided in parameter.
+ */
+fun multiplicationTable(size: Int): Array<IntArray> {
+    return (1..size).map { i ->
+        (1..size).map { j -> i * j }.toIntArray()
+    }.toTypedArray()
+}
+
+/*
+https://www.codewars.com/kata/5547cc7dcad755e480000004/train/kotlin
+ */
+fun removNb(n: Long): Array<LongArray> {
+    var o = mutableListOf<LongArray>()
+    val sum = (1..n).sum()
+    for (a in 1 .. n) {
+        if ((sum - a) % (a + 1) != 0L) {
+            continue
+        }
+        val b = (sum - a) / (a + 1)
+        if (b in 1..n && b != a) {
+            o.add(longArrayOf(a, b))
+        }
+    }
+    return o.toTypedArray()
+}
 
 

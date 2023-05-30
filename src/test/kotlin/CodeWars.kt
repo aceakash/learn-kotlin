@@ -87,4 +87,59 @@ internal class CodeWars {
             assertEquals(td.second, romanDecode(td.first))
         }
     }
+
+    @Test
+    fun `equal sides of an array`() {
+        assertEquals(3, findEvenIndex(intArrayOf(1, 2, 3, 4, 3, 2, 1)))
+        assertEquals(1, findEvenIndex(intArrayOf(1, 100, 50, -51, 1, 1)))
+        assertEquals(-1, findEvenIndex(intArrayOf(1, 2, 3, 4, 5, 6)))
+        assertEquals(3, findEvenIndex(intArrayOf(20, 10, 30, 10, 10, 15, 35)))
+        assertEquals(-1, findEvenIndex(intArrayOf(-8505, -5130, 1926, -9026)))
+        assertEquals(1, findEvenIndex(intArrayOf(2824, 1774, -1490, -9084, -9696, 23094)))
+        assertEquals(6, findEvenIndex(intArrayOf(4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4)))
+        assertEquals(0, findEvenIndex(intArrayOf(1, 3, -3)))
+    }
+
+    @Test
+    fun `partition a list in all combinations`() {
+        var actual = partlist(arrayOf("a", "b"))
+        assertEquals(1, actual.size)
+        assertContentEquals(arrayOf("a", "b"), actual[0])
+
+        actual = partlist(arrayOf("a", "b", "c"))
+        assertEquals(2, actual.size)
+        assertContentEquals(arrayOf("a", "b c"), actual[0])
+        assertContentEquals(arrayOf("a b", "c"), actual[1])
+    }
+
+    @Test
+    fun `to camel case`() {
+        assertEquals("", toCamelCase(""))
+        assertEquals("theStealthWarrior", toCamelCase("the_stealth_warrior"))
+        assertEquals("TheStealthWarrior", toCamelCase("The-Stealth-Warrior"))
+        assertEquals("ABC", toCamelCase("A-B-C"))
+    }
+
+    fun testing(n: Long, expect: String) {
+        val actual = removNb(n)
+        assertEquals(expect, actual.contentDeepToString())
+    }
+
+    @Test
+    fun basicTests() {
+        testing(26, "[[15, 21], [21, 15]]")
+        testing(101, "[[55, 91], [91, 55]]")
+        testing(102, "[[70, 73], [73, 70]]")
+        testing(100, "[]")
+
+    }
+
+    @Test
+    fun removeNbTest() {
+        assertEquals("[[15, 21], [21, 15]]", removNb(26).contentDeepToString())
+        assertEquals("[[55, 91], [91, 55]]", removNb(101).contentDeepToString())
+        assertEquals("[[70, 73], [73, 70]]", removNb(102).contentDeepToString())
+        assertEquals("[]", removNb(100).contentDeepToString())
+    }
+
 }
