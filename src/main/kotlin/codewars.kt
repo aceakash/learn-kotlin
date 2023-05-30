@@ -144,9 +144,9 @@ fun multiplicationTable(size: Int): Array<IntArray> {
 https://www.codewars.com/kata/5547cc7dcad755e480000004/train/kotlin
  */
 fun removNb(n: Long): Array<LongArray> {
-    var o = mutableListOf<LongArray>()
+    val o = mutableListOf<LongArray>()
     val sum = (1..n).sum()
-    for (a in 1 .. n) {
+    for (a in 1..n) {
         if ((sum - a) % (a + 1) != 0L) {
             continue
         }
@@ -158,4 +158,39 @@ fun removNb(n: Long): Array<LongArray> {
     return o.toTypedArray()
 }
 
+/*
+https://www.codewars.com/kata/586d6cefbcc21eed7a001155/train/kotlin
+For a given string s find the character c (or C) with longest consecutive repetition and return:
+Pair(c, l)
+ */
+fun longestRepetition(s: String): Pair<Char?, Int> {
+    var longest: Pair<Char?, Int> = Pair(null, 0)
+    var prev: Char? = null
+    var run = 0
+    for (c in s) {
+        if (prev == c) {
+            run += 1
+            continue
+        }
+        if (run > longest.second) {
+            longest = longest.copy(first = prev, second = run)
+        }
+        run = 1
+        prev = c
+    }
+    if (run > longest.second) {
+        longest = longest.copy(first = prev, second = run)
+    }
+    return longest
+}
 
+/*
+https://www.codewars.com/kata/59cfc000aeb2844d16000075/train/kotlin
+Given a string, capitalize the letters that occupy even indexes and odd indexes separately, and return as shown below. Index 0 will be considered even.
+ */
+fun capitalize(text: String): List<String> {
+    val isEven = {x: Int -> x % 2 == 0}
+    val first = text.mapIndexed {i, c -> if (isEven(i)) c.uppercase() else c.lowercase() }
+    val second = text.mapIndexed {i, c -> if (!isEven(i)) c.uppercase() else c.lowercase() }
+    return listOf(first.joinToString(""), second.joinToString(""))
+}

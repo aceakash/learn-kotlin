@@ -142,4 +142,23 @@ internal class CodeWars {
         assertEquals("[]", removNb(100).contentDeepToString())
     }
 
+    @Test
+    fun longestRepetitionTest() {
+        assertEquals(Pair('a',4), longestRepetition("aaaabb"))
+        assertEquals(Pair('a',4), longestRepetition("bbbaaabaaaa"))
+        assertEquals(Pair('u',3), longestRepetition("cbdeuuu900"))
+        assertEquals(Pair('b',5), longestRepetition("abbbbb"))
+        assertEquals(Pair('a',2), longestRepetition("aabb"))
+        assertEquals(Pair(null,0), longestRepetition(""))
+        assertEquals(Pair('b',1), longestRepetition("ba"))
+    }
+
+    @Test
+    fun capitalizeTests() {
+        assertEquals(listOf("AbCdEf", "aBcDeF"), capitalize("abcdef"))
+        assertEquals(listOf("CoDeWaRs", "cOdEwArS"), capitalize("codewars"))
+        assertEquals(listOf("AbRaCaDaBrA", "aBrAcAdAbRa"), capitalize("abracadabra"))
+        assertEquals(listOf("CoDeWaRrIoRs", "cOdEwArRiOrS"), capitalize("codewarriors"))
+    }
+
 }
