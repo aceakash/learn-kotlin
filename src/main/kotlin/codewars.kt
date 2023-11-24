@@ -189,8 +189,114 @@ https://www.codewars.com/kata/59cfc000aeb2844d16000075/train/kotlin
 Given a string, capitalize the letters that occupy even indexes and odd indexes separately, and return as shown below. Index 0 will be considered even.
  */
 fun capitalize(text: String): List<String> {
-    val isEven = {x: Int -> x % 2 == 0}
-    val first = text.mapIndexed {i, c -> if (isEven(i)) c.uppercase() else c.lowercase() }
-    val second = text.mapIndexed {i, c -> if (!isEven(i)) c.uppercase() else c.lowercase() }
+    val isEven = { x: Int -> x % 2 == 0 }
+    val first = text.mapIndexed { i, c -> if (isEven(i)) c.uppercase() else c.lowercase() }
+    val second = text.mapIndexed { i, c -> if (!isEven(i)) c.uppercase() else c.lowercase() }
     return listOf(first.joinToString(""), second.joinToString(""))
 }
+
+/*
+https://www.codewars.com/kata/54ff3102c1bad923760001f3
+Return the number (count) of vowels in the given string.
+
+We will consider a, e, i, o, u as vowels for this Kata (but not y).
+
+The input string will only consist of lower case letters and/or spaces.
+ */
+fun getVowelCount(str: String): Int {
+    return str.count { it in "aeiou" }
+}
+
+/*
+https://www.codewars.com/kata/554b4ac871d6813a03000035
+
+In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
+Examples
+
+highAndLow("1 2 3 4 5")  // return "5 1"
+highAndLow("1 2 -3 4 5") // return "5 -3"
+highAndLow("1 9 3 4 -5") // return "9 -5"
+
+Notes
+
+    All numbers are valid Int32, no need to validate them.
+    There will always be at least one number in the input string.
+    Output string must be two numbers separated by a single space, and highest number is first.
+ */
+
+fun highestAndLowest(numbers: String): String {
+    val sorted = numbers
+        .split(' ')
+        .map { it.toInt() }
+        .sortedDescending()
+
+    return "${sorted.first()} ${sorted.last()}"
+}
+
+/*
+https://www.codewars.com/kata/563b662a59afc2b5120000c6/kotlin
+
+In a small town the population is p0 = 1000 at the beginning of a year.
+The population regularly increases by 2 percent per year and moreover 50 new inhabitants per year come to live in the town.
+How many years does the town need to see its population greater than or equal to p = 1200 inhabitants?
+
+At the end of the first year there will be:
+1000 + 1000 * 0.02 + 50 => 1070 inhabitants
+
+At the end of the 2nd year there will be:
+1070 + 1070 * 0.02 + 50 => 1141 inhabitants (** number of inhabitants is an integer **)
+
+At the end of the 3rd year there will be:
+1141 + 1141 * 0.02 + 50 => 1213
+
+It will need 3 entire years.
+
+More generally given parameters:
+
+p0, percent, aug (inhabitants coming or leaving each year), p (population to equal or surpass)
+
+the function nb_year should return n number of entire years needed to get a population greater or equal to p.
+
+aug is an integer, percent a positive or null floating number, p0 and p are positive integers (> 0)
+
+Examples:
+nb_year(1500, 5, 100, 5000) -> 15
+nb_year(1500000, 2.5, 10000, 2000000) -> 10
+
+*/
+
+fun growthOfPopulation(pp0: Int, percent: Double, aug: Int, p: Int): Int {
+    var curr = pp0
+    var yearsElapsed = 0
+    while (curr < p) {
+        val newPopulation: Double = curr + (curr * percent * 0.01) + aug
+        curr = newPopulation.toInt()
+        yearsElapsed++
+    }
+    return yearsElapsed
+}
+
+/*
+https://www.codewars.com/kata/5bd00c99dbc73908bb00057a
+
+In this kata you will be given a random string of letters and tasked with returning them as a string of comma-separated sequences sorted alphabetically, with each sequence starting with an uppercase character followed by n-1 lowercase characters, where n is the letter's alphabet position 1-26.
+Example
+
+alphaSeq("ZpglnRxqenU") -> "Eeeee,Ggggggg,Llllllllllll,Nnnnnnnnnnnnnn,Nnnnnnnnnnnnnn,Pppppppppppppppp,Qqqqqqqqqqqqqqqqq,Rrrrrrrrrrrrrrrrrr,Uuuuuuuuuuuuuuuuuuuuu,Xxxxxxxxxxxxxxxxxxxxxxxx,Zzzzzzzzzzzzzzzzzzzzzzzzzz"
+
+Technical Details
+
+    The string will include only letters.
+    The first letter of each sequence is uppercase followed by n-1 lowercase.
+    Each sequence is separated with a comma.
+    Return value needs to be a string.
+ */
+fun alphabeticalSequence(str: String): String {
+    val letterToNumber  = { letter: Char -> letter.toString().lowercase().first() - 'a'}
+
+    return str.lowercase().toCharArray().sorted()
+        .map { it.uppercase() + it.toString().repeat(letterToNumber(it)) }
+        .joinToString(",")
+}
+
+private fun i(it: Char) = it.lowercase().first().code - 97

@@ -161,4 +161,31 @@ internal class CodeWars {
         assertEquals(listOf("CoDeWaRrIoRs", "cOdEwArRiOrS"), capitalize("codewarriors"))
     }
 
+    @Test
+    fun getVowelCountTests() {
+        assertEquals(5, getVowelCount("abracadabra"))
+        assertEquals(1, getVowelCount("test"))
+        assertEquals(3, getVowelCount("example"))
+    }
+
+    @Test
+    fun highestAndLowestTests() {
+        assertEquals("42 -9", highestAndLowest("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))
+        assertEquals("3 1", highestAndLowest("1 2 3"))
+    }
+
+    @Test
+    fun growthOfPopulationTests() {
+        assertEquals(15, growthOfPopulation(1500, 5.0, 100, 5000))
+        assertEquals(10, growthOfPopulation(1500000, 2.5, 10000, 2000000))
+    }
+
+    @Test
+    fun alphabeticalSequenceTests() {
+        assertEquals("Eeeee,Ggggggg,Llllllllllll,Nnnnnnnnnnnnnn,Nnnnnnnnnnnnnn,Pppppppppppppppp,Qqqqqqqqqqqqqqqqq,Rrrrrrrrrrrrrrrrrr,Uuuuuuuuuuuuuuuuuuuuu,Xxxxxxxxxxxxxxxxxxxxxxxx,Zzzzzzzzzzzzzzzzzzzzzzzzzz", alphabeticalSequence("ZpglnRxqenU"))
+        assertEquals("Bb,Eeeee,Ffffff,Ffffff,Ggggggg,Llllllllllll,Nnnnnnnnnnnnnn,Sssssssssssssssssss,Yyyyyyyyyyyyyyyyyyyyyyyyy,Yyyyyyyyyyyyyyyyyyyyyyyyy,Yyyyyyyyyyyyyyyyyyyyyyyyy", alphabeticalSequence("NyffsGeyylB"))
+        assertEquals("Bb,Jjjjjjjjjj,Kkkkkkkkkkk,Mmmmmmmmmmmmm,Ooooooooooooooo,Qqqqqqqqqqqqqqqqq,Rrrrrrrrrrrrrrrrrr,Tttttttttttttttttttt,Uuuuuuuuuuuuuuuuuuuuu,Uuuuuuuuuuuuuuuuuuuuu,Vvvvvvvvvvvvvvvvvvvvvv", alphabeticalSequence("MjtkuBovqrU"))
+        assertEquals("Dddd,Eeeee,Iiiiiiiii,Jjjjjjjjjj,Kkkkkkkkkkk,Mmmmmmmmmmmmm,Mmmmmmmmmmmmm,Nnnnnnnnnnnnnn,Ooooooooooooooo,Uuuuuuuuuuuuuuuuuuuuu,Vvvvvvvvvvvvvvvvvvvvvv", alphabeticalSequence("EvidjUnokmM"))
+        assertEquals("Bb,Bb,Ccc,Ccc,Dddd,Eeeee,Hhhhhhhh,Iiiiiiiii,Nnnnnnnnnnnnnn,Vvvvvvvvvvvvvvvvvvvvvv,Xxxxxxxxxxxxxxxxxxxxxxxx", alphabeticalSequence("HbideVbxncC"))
+    }
 }
