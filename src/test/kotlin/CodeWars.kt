@@ -188,4 +188,15 @@ internal class CodeWars {
         assertEquals("Dddd,Eeeee,Iiiiiiiii,Jjjjjjjjjj,Kkkkkkkkkkk,Mmmmmmmmmmmmm,Mmmmmmmmmmmmm,Nnnnnnnnnnnnnn,Ooooooooooooooo,Uuuuuuuuuuuuuuuuuuuuu,Vvvvvvvvvvvvvvvvvvvvvv", alphabeticalSequence("EvidjUnokmM"))
         assertEquals("Bb,Bb,Ccc,Ccc,Dddd,Eeeee,Hhhhhhhh,Iiiiiiiii,Nnnnnnnnnnnnnn,Vvvvvvvvvvvvvvvvvvvvvv,Xxxxxxxxxxxxxxxxxxxxxxxx", alphabeticalSequence("HbideVbxncC"))
     }
+
+    @Test
+    fun getMiddleCharacterTests() {
+        assertEquals("ab", getMiddleCharacter("ab"));
+        assertEquals("es", getMiddleCharacter("test"));
+        assertEquals("dd", getMiddleCharacter("middle"));
+        assertEquals("t", getMiddleCharacter("testing"));
+        assertEquals("A", getMiddleCharacter("A"));
+        assertEquals("s", getMiddleCharacter("asa"));
+        assertEquals("D", getMiddleCharacter("asDsa"));
+    }
 }

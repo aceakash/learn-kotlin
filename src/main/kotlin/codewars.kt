@@ -292,11 +292,20 @@ Technical Details
     Return value needs to be a string.
  */
 fun alphabeticalSequence(str: String): String {
-    val letterToNumber  = { letter: Char -> letter.toString().lowercase().first() - 'a'}
+    val letterToNumber = { letter: Char -> letter.toString().lowercase().first() - 'a' }
 
     return str.lowercase().toCharArray().sorted()
         .map { it.uppercase() + it.toString().repeat(letterToNumber(it)) }
         .joinToString(",")
 }
 
-private fun i(it: Char) = it.lowercase().first().code - 97
+/*
+https://www.codewars.com/kata/56747fd5cb988479af000028
+
+You are going to be given a word. Your job is to return the middle character of the word. If the word's length is odd, return the middle character. If the word's length is even, return the middle 2 characters.
+ */
+
+fun getMiddleCharacter(word: String): String {
+    val start = (word.length - 1) / 2
+    return word.substring(start, word.length - start)
+}
