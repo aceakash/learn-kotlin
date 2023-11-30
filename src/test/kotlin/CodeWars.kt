@@ -219,9 +219,21 @@ internal class CodeWars {
         assertEquals(Pair('m', 3), longestRepetition("mmmt"))
     }
 
+    @Test
+    fun `longestRepetition - for strings with only one repeated char somewhere in the middle, gives that character`() {
+        assertEquals(Pair('x', 2), longestRepetition("axxb"))
+        assertEquals(Pair('m', 3), longestRepetition("cmmmt"))
+    }
+
     private fun longestRepetition(str: String): Pair<Char, Int> {
-        val first = str[0]
-        val repeatedSeq = str.takeWhile { it == first }
-        return Pair(first, repeatedSeq.length)
+        var longest = Pair(' ', 0)
+        str.forEachIndexed { index, c ->
+            val start = str[index]
+            val repeatedSeq = str.substring(index).takeWhile { it == start }
+            if (repeatedSeq.length > longest.second) {
+                longest = Pair(c, repeatedSeq.length)
+            }
+        }
+        return longest
     }
 }
