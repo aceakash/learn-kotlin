@@ -163,26 +163,16 @@ https://www.codewars.com/kata/586d6cefbcc21eed7a001155/train/kotlin
 For a given string s find the character c (or C) with longest consecutive repetition and return:
 Pair(c, l)
  */
-fun longestRepetition_OLD(s: String): Pair<Char?, Int> {
-    var longest: Pair<Char?, Int> = Pair(null, 0)
-    var prev: Char? = null
-    var run = 0
-    for (c in s) {
-        if (prev == c) {
-            run += 1
-            continue
+fun longestRepetition_OLD(str: String): Pair<Char?, Int> {
+    var longest:Pair<Char?, Int> = Pair(null, 0)
+    str.forEachIndexed { index, c ->
+        val start = str[index]
+        val repeatedSeq = str.substring(index).takeWhile { it == start }
+        if (repeatedSeq.length > longest.second) {
+            longest = Pair(c, repeatedSeq.length)
         }
-        if (run > longest.second) {
-            longest = longest.copy(first = prev, second = run)
-        }
-        run = 1
-        prev = c
     }
-    if (run > longest.second) {
-        longest = longest.copy(first = prev, second = run)
-    }
-    return longest
-}
+    return longest}
 
 /*
 https://www.codewars.com/kata/59cfc000aeb2844d16000075/train/kotlin

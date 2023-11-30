@@ -238,8 +238,19 @@ internal class CodeWars {
         assertEquals(Pair('c', 3), longestRepetition("xcccxdddx"))
     }
 
-    private fun longestRepetition(str: String): Pair<Char, Int> {
-        var longest = Pair(' ', 0)
+    @Test
+    fun `longestRepetition - for strings with two repeated characters of diff length, gives the character with longer run`() {
+        assertEquals(Pair('b', 3), longestRepetition("aabbb"))
+        assertEquals(Pair('c', 3), longestRepetition("cccdd"))
+        assertEquals(Pair('c', 3), longestRepetition("xcccxddx"))
+        assertEquals(Pair('d', 3), longestRepetition("xccxdddx"))
+        assertEquals(Pair('e', 3), longestRepetition("xccxddxeee"))
+    }
+
+
+
+    private fun longestRepetition(str: String): Pair<Char?, Int> {
+        var longest:Pair<Char?, Int> = Pair(null, 0)
         str.forEachIndexed { index, c ->
             val start = str[index]
             val repeatedSeq = str.substring(index).takeWhile { it == start }
