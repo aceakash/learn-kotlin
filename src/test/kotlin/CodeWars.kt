@@ -231,6 +231,12 @@ internal class CodeWars {
         assertEquals(Pair('m', 3), longestRepetition("ctmmm"))
     }
 
+    @Test
+    fun `longestRepetition - for strings with two repeated characters of same length, gives the first character`() {
+        assertEquals(Pair('a', 2), longestRepetition("aabb"))
+        assertEquals(Pair('c', 3), longestRepetition("cccddd"))
+    }
+
     private fun longestRepetition(str: String): Pair<Char, Int> {
         var longest = Pair(' ', 0)
         str.forEachIndexed { index, c ->
