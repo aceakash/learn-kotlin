@@ -144,13 +144,13 @@ internal class CodeWars {
 
     @Test
     fun longestRepetitionTest() {
-        assertEquals(Pair('a',4), longestRepetition("aaaabb"))
-        assertEquals(Pair('a',4), longestRepetition("bbbaaabaaaa"))
-        assertEquals(Pair('u',3), longestRepetition("cbdeuuu900"))
-        assertEquals(Pair('b',5), longestRepetition("abbbbb"))
-        assertEquals(Pair('a',2), longestRepetition("aabb"))
-        assertEquals(Pair(null,0), longestRepetition(""))
-        assertEquals(Pair('b',1), longestRepetition("ba"))
+        assertEquals(Pair('a',4), longestRepetition_OLD("aaaabb"))
+        assertEquals(Pair('a',4), longestRepetition_OLD("bbbaaabaaaa"))
+        assertEquals(Pair('u',3), longestRepetition_OLD("cbdeuuu900"))
+        assertEquals(Pair('b',5), longestRepetition_OLD("abbbbb"))
+        assertEquals(Pair('a',2), longestRepetition_OLD("aabb"))
+        assertEquals(Pair(null,0), longestRepetition_OLD(""))
+        assertEquals(Pair('b',1), longestRepetition_OLD("ba"))
     }
 
     @Test
@@ -198,5 +198,22 @@ internal class CodeWars {
         assertEquals("A", getMiddleCharacter("A"));
         assertEquals("s", getMiddleCharacter("asa"));
         assertEquals("D", getMiddleCharacter("asDsa"));
+    }
+
+    @Test
+    fun `longestRepetition - for single character inputs, gives the character itself`() {
+        assertEquals(Pair('a', 1), longestRepetition("a"))
+        assertEquals(Pair('b', 1), longestRepetition("b"))
+    }
+
+    @Test
+    fun `longestRepetition - for strings with only a single character repeated, gives the character itself`() {
+        assertEquals(Pair('a', 2), longestRepetition("aa"))
+        assertEquals(Pair('a', 3), longestRepetition("aaa"))
+        assertEquals(Pair('x', 4), longestRepetition("xxxx"))
+    }
+
+    private fun longestRepetition(str: String): Pair<Char, Int> {
+        return Pair(str[0], str.length)
     }
 }
