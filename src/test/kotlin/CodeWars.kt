@@ -142,16 +142,7 @@ internal class CodeWars {
         assertEquals("[]", removNb(100).contentDeepToString())
     }
 
-    @Test
-    fun longestRepetitionTest() {
-        assertEquals(Pair('a',4), longestRepetition_OLD("aaaabb"))
-        assertEquals(Pair('a',4), longestRepetition_OLD("bbbaaabaaaa"))
-        assertEquals(Pair('u',3), longestRepetition_OLD("cbdeuuu900"))
-        assertEquals(Pair('b',5), longestRepetition_OLD("abbbbb"))
-        assertEquals(Pair('a',2), longestRepetition_OLD("aabb"))
-        assertEquals(Pair(null,0), longestRepetition_OLD(""))
-        assertEquals(Pair('b',1), longestRepetition_OLD("ba"))
-    }
+
 
     @Test
     fun capitalizeTests() {
@@ -247,17 +238,14 @@ internal class CodeWars {
         assertEquals(Pair('e', 3), longestRepetition("xccxddxeee"))
     }
 
-
-
-    private fun longestRepetition(str: String): Pair<Char?, Int> {
-        var longest:Pair<Char?, Int> = Pair(null, 0)
-        str.forEachIndexed { index, c ->
-            val start = str[index]
-            val repeatedSeq = str.substring(index).takeWhile { it == start }
-            if (repeatedSeq.length > longest.second) {
-                longest = Pair(c, repeatedSeq.length)
-            }
-        }
-        return longest
+    @Test
+    fun `longestRepetition - acceptance tests from codewars`() {
+        assertEquals(Pair('a',4), longestRepetition("aaaabb"))
+        assertEquals(Pair('a',4), longestRepetition("bbbaaabaaaa"))
+        assertEquals(Pair('u',3), longestRepetition("cbdeuuu900"))
+        assertEquals(Pair('b',5), longestRepetition("abbbbb"))
+        assertEquals(Pair('a',2), longestRepetition("aabb"))
+        assertEquals(Pair(null,0), longestRepetition(""))
+        assertEquals(Pair('b',1), longestRepetition("ba"))
     }
 }
