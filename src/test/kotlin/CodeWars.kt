@@ -235,6 +235,7 @@ internal class CodeWars {
     fun `longestRepetition - for strings with two repeated characters of same length, gives the first character`() {
         assertEquals(Pair('a', 2), longestRepetition("aabb"))
         assertEquals(Pair('c', 3), longestRepetition("cccddd"))
+        assertEquals(Pair('c', 3), longestRepetition("xcccxdddx"))
     }
 
     private fun longestRepetition(str: String): Pair<Char, Int> {
