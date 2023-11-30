@@ -142,16 +142,7 @@ internal class CodeWars {
         assertEquals("[]", removNb(100).contentDeepToString())
     }
 
-    @Test
-    fun longestRepetitionTest() {
-        assertEquals(Pair('a',4), longestRepetition("aaaabb"))
-        assertEquals(Pair('a',4), longestRepetition("bbbaaabaaaa"))
-        assertEquals(Pair('u',3), longestRepetition("cbdeuuu900"))
-        assertEquals(Pair('b',5), longestRepetition("abbbbb"))
-        assertEquals(Pair('a',2), longestRepetition("aabb"))
-        assertEquals(Pair(null,0), longestRepetition(""))
-        assertEquals(Pair('b',1), longestRepetition("ba"))
-    }
+
 
     @Test
     fun capitalizeTests() {
@@ -198,5 +189,63 @@ internal class CodeWars {
         assertEquals("A", getMiddleCharacter("A"));
         assertEquals("s", getMiddleCharacter("asa"));
         assertEquals("D", getMiddleCharacter("asDsa"));
+    }
+
+    @Test
+    fun `longestRepetition - for single character inputs, gives the character itself`() {
+        assertEquals(Pair('a', 1), longestRepetition("a"))
+        assertEquals(Pair('b', 1), longestRepetition("b"))
+    }
+
+    @Test
+    fun `longestRepetition - for strings with only a single character repeated, gives the character itself`() {
+        assertEquals(Pair('a', 2), longestRepetition("aa"))
+        assertEquals(Pair('a', 3), longestRepetition("aaa"))
+        assertEquals(Pair('x', 4), longestRepetition("xxxx"))
+    }
+
+    @Test
+    fun `longestRepetition - for strings with a repeated char at the beginning of the string, gives that character`() {
+        assertEquals(Pair('a', 2), longestRepetition("aab"))
+        assertEquals(Pair('m', 3), longestRepetition("mmmt"))
+    }
+
+    @Test
+    fun `longestRepetition - for strings with only one repeated char somewhere in the middle, gives that character`() {
+        assertEquals(Pair('x', 2), longestRepetition("axxb"))
+        assertEquals(Pair('m', 3), longestRepetition("cmmmt"))
+    }
+
+    @Test
+    fun `longestRepetition - for strings with only one repeated char at the end, gives that character`() {
+        assertEquals(Pair('x', 2), longestRepetition("abxx"))
+        assertEquals(Pair('m', 3), longestRepetition("ctmmm"))
+    }
+
+    @Test
+    fun `longestRepetition - for strings with two repeated characters of same length, gives the first character`() {
+        assertEquals(Pair('a', 2), longestRepetition("aabb"))
+        assertEquals(Pair('c', 3), longestRepetition("cccddd"))
+        assertEquals(Pair('c', 3), longestRepetition("xcccxdddx"))
+    }
+
+    @Test
+    fun `longestRepetition - for strings with two repeated characters of diff length, gives the character with longer run`() {
+        assertEquals(Pair('b', 3), longestRepetition("aabbb"))
+        assertEquals(Pair('c', 3), longestRepetition("cccdd"))
+        assertEquals(Pair('c', 3), longestRepetition("xcccxddx"))
+        assertEquals(Pair('d', 3), longestRepetition("xccxdddx"))
+        assertEquals(Pair('e', 3), longestRepetition("xccxddxeee"))
+    }
+
+    @Test
+    fun `longestRepetition - acceptance tests from codewars`() {
+        assertEquals(Pair('a',4), longestRepetition("aaaabb"))
+        assertEquals(Pair('a',4), longestRepetition("bbbaaabaaaa"))
+        assertEquals(Pair('u',3), longestRepetition("cbdeuuu900"))
+        assertEquals(Pair('b',5), longestRepetition("abbbbb"))
+        assertEquals(Pair('a',2), longestRepetition("aabb"))
+        assertEquals(Pair(null,0), longestRepetition(""))
+        assertEquals(Pair('b',1), longestRepetition("ba"))
     }
 }
