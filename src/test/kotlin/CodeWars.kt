@@ -225,6 +225,12 @@ internal class CodeWars {
         assertEquals(Pair('m', 3), longestRepetition("cmmmt"))
     }
 
+    @Test
+    fun `longestRepetition - for strings with only one repeated char at the end, gives that character`() {
+        assertEquals(Pair('x', 2), longestRepetition("abxx"))
+        assertEquals(Pair('m', 3), longestRepetition("ctmmm"))
+    }
+
     private fun longestRepetition(str: String): Pair<Char, Int> {
         var longest = Pair(' ', 0)
         str.forEachIndexed { index, c ->
