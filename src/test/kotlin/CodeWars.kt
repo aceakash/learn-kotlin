@@ -213,7 +213,15 @@ internal class CodeWars {
         assertEquals(Pair('x', 4), longestRepetition("xxxx"))
     }
 
+    @Test
+    fun `longestRepetition - for strings with a repeated char at the beginning of the string, gives that character`() {
+        assertEquals(Pair('a', 2), longestRepetition("aab"))
+        assertEquals(Pair('m', 3), longestRepetition("mmmt"))
+    }
+
     private fun longestRepetition(str: String): Pair<Char, Int> {
-        return Pair(str[0], str.length)
+        val first = str[0]
+        val repeatedSeq = str.takeWhile { it == first }
+        return Pair(first, repeatedSeq.length)
     }
 }
